@@ -12,32 +12,61 @@ namespace Tests.SortingFixtures
     {
         static void Main(string[] args)
         {
-            AddMovie addMovie = new AddMovie();
+            NumberSorter numberSorter = new NumberSorter();
 
-            bool shouldBeTrue = addMovie.AddToList(Console.ReadLine());
+            LinkedList<string> toBeSorted = new LinkedList<string>(); toBeSorted.AddFirst("decimal 1994"); toBeSorted.AddFirst("capital 1999"); toBeSorted.AddFirst("bee 2000"); toBeSorted.AddFirst("aligator 1817");
 
-            Assert.AreEqual(true, shouldBeTrue);
+            List<string> result = numberSorter.Sorter(toBeSorted);
+
+            List<string> expected = new List<string>(); expected.Add("1817aligator"); expected.Add("1994decimal"); expected.Add("1999capital"); expected.Add("2000bee"); expected.Sort();
+
+            Assert.AreEqual(expected, result);
+
         }
-        internal class AddMovie
+
+        internal class NumberSorter
         {
-            public bool AddToList(string UI)
+            public List<string> Sorter(LinkedList<string> needsSorting)
             {
-                bool shouldBeTrue = false;
+                int a = needsSorting.Count;
 
-                List<string> firstList = new List<string>(); firstList.Add("Intelligence"); firstList.Add("Spelunking"); firstList.Add("book");
+                string[] setOfStrings = new string[a];
 
-                int x = firstList.Count();
+                string[] setOfStringsWithNumberFirst = new string[a];
 
-                firstList.Add(UI);
+                List<string> sortedList = new List<string>();
 
-                int y = firstList.Count();
+                int i = 0;
 
-                if (x < y)
+                foreach (string s in needsSorting)
                 {
-                    shouldBeTrue = true;
+                    foreach (char c in s)
+                    {
+                        if (char.IsLetter(c))
+                        {
+                            setOfStrings[i] += c;
+                        }
+                        else if (char.IsDigit(c))
+                        {
+                            setOfStringsWithNumberFirst[i] += c;
+                        }
+                    }
+
+                    setOfStringsWithNumberFirst[i] += setOfStrings[i];
+
+                    i++;
+                }
+                foreach (string s in setOfStringsWithNumberFirst)
+                {
+
+                    sortedList.Add(s);
+
                 }
 
-                return (shouldBeTrue);
+
+                sortedList.Sort();
+
+                return (sortedList);
             }
         }
     }
