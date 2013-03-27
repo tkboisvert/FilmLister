@@ -32,7 +32,7 @@ namespace ConsoleApplication1
                         setOfStringsWithNumberFirst[i] += c;
                     }
                 }
-
+                setOfStringsWithNumberFirst[i] += " ";
                 setOfStringsWithNumberFirst[i] += setOfStrings[i];
 
                 i++;

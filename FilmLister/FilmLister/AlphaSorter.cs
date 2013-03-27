@@ -11,7 +11,9 @@ namespace ConsoleApplication1
         {
             int a = needsSorting.Count;
 
-            string[] setOfStrings = new string[a];
+            string[] setOfNumbers = new string[a];
+
+            string[] setOfStringsWithLetterFirst = new string[a];
 
             List<string> sorted = new List<string>();
                 
@@ -19,13 +21,24 @@ namespace ConsoleApplication1
 
             foreach (string s in needsSorting)
             {
+                setOfNumbers[i] += " ";
                 foreach (char c in s)
                 {
-                    setOfStrings[i] += c;
+                    if (char.IsDigit(c))
+                    {
+                        setOfNumbers[i] += c;
+                    }
+                    else if (char.IsLetter(c))
+                    {
+                        setOfStringsWithLetterFirst[i] += c;
+                    }
                 }
+
+                setOfStringsWithLetterFirst[i] += setOfNumbers[i];
+
                 i++;
             }
-            foreach (string s in setOfStrings)
+            foreach (string s in setOfStringsWithLetterFirst)
             {
                 sorted.Add(s);
             }

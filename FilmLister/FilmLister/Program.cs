@@ -16,18 +16,21 @@ namespace ConsoleApplication1
 
             bool numerical = false;
 
-            Queue<string> StartingSetOfStrings = new Queue<string>(); StartingSetOfStrings.Enqueue("z1"); StartingSetOfStrings.Enqueue("y2"); StartingSetOfStrings.Enqueue("x3"); StartingSetOfStrings.Enqueue("w4"); StartingSetOfStrings.Enqueue("v5"); StartingSetOfStrings.Enqueue("u6");
-
-            Queue<string> forNavigationalUse = new Queue<string>(); forNavigationalUse.Enqueue("z1"); forNavigationalUse.Enqueue("y2"); forNavigationalUse.Enqueue("x3"); forNavigationalUse.Enqueue("w4"); forNavigationalUse.Enqueue("v5"); forNavigationalUse.Enqueue("u6");
-
+            Queue<string> StartingSetOfStrings = new Queue<string>(); StartingSetOfStrings.Enqueue("Starwars VI 1982"); StartingSetOfStrings.Enqueue("Indiana Jones 1987"); StartingSetOfStrings.Enqueue("X-Men 2003"); StartingSetOfStrings.Enqueue("SpiderMan 2003"); StartingSetOfStrings.Enqueue("Matrix 2000"); StartingSetOfStrings.Enqueue("LOTR 2001");
 
             while (true)
             {
-
-                if (newItem != null)
+                if (newItem == "" || newItem == " ")
                 {
+
+                    newItem = null;
+                    Console.WriteLine("You can't label a movie nothing!");
+
+                }
+                else if (newItem != null)
+                {
+                    
                     StartingSetOfStrings.Enqueue(newItem);
-                    forNavigationalUse.Enqueue(newItem);
                     newItem = null;
                 }
 
@@ -50,7 +53,7 @@ namespace ConsoleApplication1
                 Console.Clear();
                 Console.WriteLine("Sort by: >Y<ear, >A<lphabetical");
                 Console.WriteLine("");
-                Console.WriteLine("Press the left or right arrow keys to navigate");
+                Console.WriteLine("Press the left or right arrow keys to navigate/begin");
                 Console.WriteLine("");
                 Console.WriteLine("A>d<d title");
                 Console.WriteLine("<-          ->");
@@ -76,7 +79,7 @@ namespace ConsoleApplication1
 
                     if (keyInfo.Key == ConsoleKey.RightArrow)
                     {
-                        if (i < (forNavigationalUse.Count() - 1))
+                        if (i < (StartingSetOfStrings.Count() - 1))
                         {
                             i++;
                             Console.Clear();
@@ -147,6 +150,10 @@ namespace ConsoleApplication1
                         Console.WriteLine("Example: New Movie One 1996");
                         newItem = Console.ReadLine();
                         break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not a valid key");
                     }
                 }
 
