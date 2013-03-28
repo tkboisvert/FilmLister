@@ -43,7 +43,7 @@ namespace Tests.SortingFixtures
                 {
                     foreach (char c in s)
                     {
-                        if (char.IsLetter(c))
+                        if (char.IsLetter(c) || char.IsWhiteSpace(c) || char.IsPunctuation(c))
                         {
                             setOfStrings[i] += c;
                         }

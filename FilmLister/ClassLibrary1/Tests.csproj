@@ -49,12 +49,12 @@
     <Compile Include="AddingAdditionalMovieTitlesFixtures\When_a_new_instance_of_AddMovie_is_started_.cs" />
     <Compile Include="AddingAdditionalMovieTitlesFixtures\When_the_D_key_is_pressed_.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemovingMovieTitlesFromExistingListFixtures\When_removing_a_title_from_the_list_.cs" />
+    <Compile Include="SortingFixtures\When_checking_user_input.cs" />
     <Compile Include="SortingFixtures\When_sorting_by_alpha_order.cs" />
     <Compile Include="SortingFixtures\When_sorting_numericaly.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NavigationFixtures\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

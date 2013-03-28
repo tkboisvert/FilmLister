@@ -6,7 +6,7 @@ using ConsoleApplication1;
 
 namespace ConsoleApplication1
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -16,22 +16,18 @@ namespace ConsoleApplication1
 
             bool numerical = false;
 
-            Queue<string> StartingSetOfStrings = new Queue<string>(); StartingSetOfStrings.Enqueue("Starwars VI 1982"); StartingSetOfStrings.Enqueue("Indiana Jones 1987"); StartingSetOfStrings.Enqueue("X-Men 2003"); StartingSetOfStrings.Enqueue("SpiderMan 2003"); StartingSetOfStrings.Enqueue("Matrix 2000"); StartingSetOfStrings.Enqueue("LOTR 2001");
+            Queue<string> StartingSetOfStrings = new Queue<string>(); StartingSetOfStrings.Enqueue("The Lord of the Rings: The Return of the King 2003"); StartingSetOfStrings.Enqueue("Star Wars: Episode V - The Empire Strikes Back 1980"); StartingSetOfStrings.Enqueue("Saving Private Ryan 1998"); StartingSetOfStrings.Enqueue("Inside Man 2006"); StartingSetOfStrings.Enqueue("Source Code 2011"); StartingSetOfStrings.Enqueue("The Matrix 1999");
 
             while (true)
             {
-                if (newItem == "" || newItem == " ")
-                {
+                ChecknewItem checknewItem = new ChecknewItem();
 
-                    newItem = null;
-                    Console.WriteLine("You can't label a movie nothing!");
+                newItem = checknewItem.CheckInput(newItem);
 
-                }
-                else if (newItem != null)
+                if (newItem != null)
                 {
-                    
-                    StartingSetOfStrings.Enqueue(newItem);
-                    newItem = null;
+                StartingSetOfStrings.Enqueue(newItem);
+                newItem = null;
                 }
 
                 if (alpha == true && numerical == false) 
@@ -158,20 +154,6 @@ namespace ConsoleApplication1
                 }
 
             }
-            //public class Recount
-            //{
-            //    public string[] Count(string UI)
-            //    {
-            //        foreach (string s in StartingSetOfStrings)
-            //        {
-            //            foreach (char c in s)
-            //            {
-            //                setOfStrings[x] += c;
-            //            }
-            //            x++;
-            //        }
-            //    }
-            //}
         }
     }
 }

@@ -19,18 +19,26 @@ namespace ConsoleApplication1
                 
             int i = 0;
 
+            bool removesTheSpaceLeftoverByTheNumberSorter = false;
+
             foreach (string s in needsSorting)
             {
-                setOfNumbers[i] += " ";
+                removesTheSpaceLeftoverByTheNumberSorter = true;
+
                 foreach (char c in s)
                 {
                     if (char.IsDigit(c))
                     {
                         setOfNumbers[i] += c;
                     }
-                    else if (char.IsLetter(c))
+                    else if (c == ' ' && removesTheSpaceLeftoverByTheNumberSorter == true)
+                    {
+                        removesTheSpaceLeftoverByTheNumberSorter = true;
+                    }
+                    else if (char.IsLetter(c) || char.IsWhiteSpace(c) || char.IsPunctuation(c) || c == ' ')
                     {
                         setOfStringsWithLetterFirst[i] += c;
+                        removesTheSpaceLeftoverByTheNumberSorter = false;
                     }
                 }
 

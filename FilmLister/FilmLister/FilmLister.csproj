@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlphaSorter.cs" />
+    <Compile Include="ChecknewItem.cs" />
     <Compile Include="NumericalSorter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
