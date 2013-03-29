@@ -154,16 +154,22 @@ namespace ConsoleApplication1
                     {
                         Console.Clear();
                         Console.WriteLine("Type the name of the movie and coresponding year");
-                        Console.WriteLine("If you've changed your mind, type '(N)evermind'");
+                        Console.WriteLine("If you've changed your mind, press the escape key.");
                         Console.WriteLine("");
                         Sort.ListAll(StartingSetOfStrings);
                         Console.WriteLine("");
-                        Console.WriteLine("Example: The Movie to Be Removed 1996");
-                        stringForRemovingFromTheList = Console.ReadLine();
+                        Console.WriteLine("Text must be formatted in the same way with the same case.");
+                        keyInfo = Console.ReadKey();
 
-                        if (stringForRemovingFromTheList == "Nevermind" ||stringForRemovingFromTheList == "nevermind" ||stringForRemovingFromTheList == "n" ||stringForRemovingFromTheList == "N")
+                        if (keyInfo.Key == ConsoleKey.Escape)
                         {
                             stringForRemovingFromTheList = null;
+                        }
+
+                        else 
+                        { 
+                            string firstCharacter = keyInfo.Key.ToString();
+                            stringForRemovingFromTheList = firstCharacter += Console.ReadLine();
                         }
 
                         break;
