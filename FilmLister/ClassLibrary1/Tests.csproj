@@ -50,7 +50,10 @@
     <Compile Include="AddingAdditionalMovieTitlesFixtures\When_the_D_key_is_pressed_.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemovingMovieTitlesFromExistingListFixtures\When_removing_a_title_from_the_list_.cs" />
+    <Compile Include="SortingFixtures\Sort.cs" />
+    <Compile Include="SortingFixtures\When_adding_the_Linked_List_.cs" />
     <Compile Include="SortingFixtures\When_checking_user_input.cs" />
+    <Compile Include="SortingFixtures\When_cycling_through_the_list.cs" />
     <Compile Include="SortingFixtures\When_sorting_by_alpha_order.cs" />
     <Compile Include="SortingFixtures\When_sorting_numericaly.cs" />
   </ItemGroup>

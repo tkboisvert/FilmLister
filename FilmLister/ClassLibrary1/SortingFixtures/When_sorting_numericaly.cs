@@ -13,62 +13,18 @@ namespace Tests.SortingFixtures
         [Test]
         public void Should_sort_strings_to_numerical_order()
         {
-            NumberSorter numberSorter = new NumberSorter();
+            Sort sort = new Sort();
 
             LinkedList<string> toBeSorted = new LinkedList<string>(); toBeSorted.AddFirst("decimal 1994"); toBeSorted.AddFirst("capital 1999"); toBeSorted.AddFirst("bee 2000"); toBeSorted.AddFirst("aligator 1817");
 
-            List<string> result = numberSorter.Sorter(toBeSorted);
+            List<string> sortedList = new List<string>(); sortedList.Add("1817aligator"); sortedList.Add("1994decimal"); sortedList.Add("1999capital"); sortedList.Add("2000bee"); sortedList.Sort();
 
-            List<string> expected = new List<string>(); expected.Add("1817aligator"); expected.Add("1994decimal"); expected.Add("1999capital"); expected.Add("2000bee"); expected.Sort();
+            LinkedList<string> result = sort.NumberSorter(toBeSorted);
+
+            LinkedList<string> expected = new LinkedList<string>(sortedList);
 
             Assert.AreEqual(expected, result);
 
-        }
-
-        internal class NumberSorter
-        {
-            public List<string> Sorter(LinkedList<string> needsSorting)
-            {
-                int a = needsSorting.Count;
-
-                string[] setOfStrings = new string[a];
-
-                string[] setOfStringsWithNumberFirst = new string[a];
-
-                List<string> sortedList = new List<string>();
-
-                int i = 0;
-
-                foreach (string s in needsSorting)
-                {
-                    foreach (char c in s)
-                    {
-                        if (char.IsLetter(c) || char.IsWhiteSpace(c) || char.IsPunctuation(c))
-                        {
-                            setOfStrings[i] += c;
-                        }
-                        else if (char.IsDigit(c))
-                        {
-                            setOfStringsWithNumberFirst[i] += c;
-                        }
-                    }
-
-                    setOfStringsWithNumberFirst[i] += setOfStrings[i];
-
-                    i++;
-                }
-                foreach (string s in setOfStringsWithNumberFirst)
-                {
-
-                    sortedList.Add(s);
-
-                }
-
-
-                sortedList.Sort();
-
-                return(sortedList);
-            }
         }
     }
 }

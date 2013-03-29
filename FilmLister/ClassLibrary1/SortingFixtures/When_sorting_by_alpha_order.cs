@@ -13,47 +13,17 @@ namespace Tests.SortingFixtures
         [Test]
         public void should_return_sorted_output()
         {
-            AlphaSorter alphaSorter = new AlphaSorter();
+            Sort sort = new Sort();
 
             LinkedList<string> toBeSorted = new LinkedList<string>(); toBeSorted.AddFirst("decimal3"); toBeSorted.AddFirst("capital5"); toBeSorted.AddFirst("bee3"); toBeSorted.AddFirst("aligator9");
 
-            List<string> result = alphaSorter.Sorter(toBeSorted);
+            toBeSorted = sort.AlphaSorter(toBeSorted);
 
-            List<string> expected = new List<string>(); expected.Add("aligator9"); expected.Add("bee3"); expected.Add("capital5"); expected.Add("decimal3");
+            LinkedList<string> expected = new LinkedList<string>(); expected.AddFirst("aligator9"); expected.AddFirst("bee3"); expected.AddFirst("capital5"); expected.AddFirst("decimal3");
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected, toBeSorted);
 
         }
 
-        internal class AlphaSorter
-        {
-            public List<string> Sorter(LinkedList<string> needsSorting)
-            {
-                int a = needsSorting.Count;
-
-                string[] setOfStrings = new string[a];
-
-                List<string> sorted = new List<string>();
-
-                int i = 0;
-
-                foreach (string s in needsSorting)
-                {
-                    foreach (char c in s)
-                    {
-                        setOfStrings[i] += c;
-                    }
-                    i++;
-                }
-                foreach (string s in setOfStrings)
-                {
-                    sorted.Add(s);
-                }
-
-                sorted.Sort();
-
-                return (sorted);
-            }
-        }
     }
 }

@@ -10,53 +10,51 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            string newItem = null;
+            ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
+
+            string stringForAddingToTheList = null;
+
+            string stringForRemovingFromTheList = null;
+
+            string sortedBy = "Defaulted to alphabetical";
 
             bool alpha = true;
 
             bool numerical = false;
 
-            Queue<string> StartingSetOfStrings = new Queue<string>(); StartingSetOfStrings.Enqueue("The Lord of the Rings: The Return of the King 2003"); StartingSetOfStrings.Enqueue("Star Wars: Episode V - The Empire Strikes Back 1980"); StartingSetOfStrings.Enqueue("Saving Private Ryan 1998"); StartingSetOfStrings.Enqueue("Inside Man 2006"); StartingSetOfStrings.Enqueue("Source Code 2011"); StartingSetOfStrings.Enqueue("The Matrix 1999");
+            int x = 0;
+
+            LinkedList<string> StartingSetOfStrings = new LinkedList<string>(HardCopyOfTitles.ToLinkedList());
 
             while (true)
             {
-                ChecknewItem checknewItem = new ChecknewItem();
+                
+                StartingSetOfStrings = CheckString.AndAddSpecifiedNode(StartingSetOfStrings, stringForAddingToTheList);
 
-                newItem = checknewItem.CheckInput(newItem);
+                StartingSetOfStrings = CheckString.AndRemoveSpecifiedNode(StartingSetOfStrings, stringForRemovingFromTheList);
 
-                if (newItem != null)
-                {
-                StartingSetOfStrings.Enqueue(newItem);
-                newItem = null;
-                }
+                stringForAddingToTheList = null;
 
-                if (alpha == true && numerical == false) 
-                {
-                    AlphaSorter alphaSorter = new AlphaSorter();
+                stringForRemovingFromTheList = null;
 
-                    StartingSetOfStrings = alphaSorter.Sorter(StartingSetOfStrings);
-                }
-
-                if (alpha == false && numerical == true)
-                {
-                    NumericalSorter numericalSorter = new NumericalSorter();
-
-                    StartingSetOfStrings = numericalSorter.Sorter(StartingSetOfStrings);
-                }
+                StartingSetOfStrings = Sort.DecideSortingMethod(alpha, numerical, StartingSetOfStrings);
 
                 string[] setOfStrings = new string[StartingSetOfStrings.Count()];
 
                 Console.Clear();
-                Console.WriteLine("Sort by: >Y<ear, >A<lphabetical");
+                Console.WriteLine(sortedBy);
+                Console.WriteLine("Sort by: (Y)ear, (A)lphabetical");
                 Console.WriteLine("");
-                Console.WriteLine("Press the left or right arrow keys to navigate/begin");
+                Console.WriteLine("Press the right arrow key to begin");
                 Console.WriteLine("");
-                Console.WriteLine("A>d<d title");
-                Console.WriteLine("<-          ->");
+                Console.WriteLine("a(D)d a title, (R)emove a title, (L)ist all");
+                if (sortedBy == "Sorting: by year" || sortedBy == "Sorting: alphabeticaly")
+                {
+                    Console.WriteLine("            ->");
+                }
+                else { Console.WriteLine("<-          ->"); }
 
-                int i = -1;
-
-                int x = 0;
+                x = 0;
 
                 foreach (string s in StartingSetOfStrings)
                 {
@@ -67,28 +65,30 @@ namespace ConsoleApplication1
                     x++;
                 }
 
+                x = -1;
+
                 while (true)
                 {
 
-                    ConsoleKeyInfo keyInfo = Console.ReadKey();
-
+                    keyInfo = Console.ReadKey();
 
                     if (keyInfo.Key == ConsoleKey.RightArrow)
                     {
-                        if (i < (StartingSetOfStrings.Count() - 1))
+                        if (x < (StartingSetOfStrings.Count() - 1))
                         {
-                            i++;
+                            x++;
                             Console.Clear();
-                            Console.WriteLine("Sort by: >Y<ear, >A<lphabetical");
+                            Console.WriteLine(sortedBy);
+                            Console.WriteLine("Sort by: (Y)ear, (A)lphabetical");
                             Console.WriteLine("");
-                            Console.WriteLine(setOfStrings[i]);
+                            Console.WriteLine(setOfStrings[x]);
                             Console.WriteLine("");
-                            Console.WriteLine("A>d<d title");
-                            if (StartingSetOfStrings.First() == setOfStrings[i])
+                            Console.WriteLine("a(D)d a title, (R)emove a title, (L)ist all");
+                            if (StartingSetOfStrings.First() == setOfStrings[x])
                             {
                                 Console.WriteLine("            ->");
                             }
-                            else if (StartingSetOfStrings.Last() == setOfStrings[i])
+                            else if (StartingSetOfStrings.Last() == setOfStrings[x])
                             {
                                 Console.WriteLine("<-            ");
                             }
@@ -100,20 +100,21 @@ namespace ConsoleApplication1
                     }
                     else if (keyInfo.Key == ConsoleKey.LeftArrow)
                     {
-                        if (i >= 1)
+                        if (x >= 1)
                         {
-                            i--;
+                            x--;
                             Console.Clear();
-                            Console.WriteLine("Sort by: >Y<ear, >A<lphabetical");
+                            Console.WriteLine(sortedBy);
+                            Console.WriteLine("Sort by: (Y)ear, (A)lphabetical");
                             Console.WriteLine("");
-                            Console.WriteLine(setOfStrings[i]);
+                            Console.WriteLine(setOfStrings[x]);
                             Console.WriteLine("");
-                            Console.WriteLine("A>d<d title");
-                            if (StartingSetOfStrings.First() == setOfStrings[i])
+                            Console.WriteLine("a(D)d a title, (R)emove a title, (L)ist all");
+                            if (StartingSetOfStrings.First() == setOfStrings[x])
                             {
                                 Console.WriteLine("            ->");
                             }
-                            else if (StartingSetOfStrings.Last() == setOfStrings[i])
+                            else if (StartingSetOfStrings.Last() == setOfStrings[x])
                             {
                                 Console.WriteLine("<-            ");
                             }
@@ -128,6 +129,7 @@ namespace ConsoleApplication1
                     else if (keyInfo.Key == ConsoleKey.Y)
                     {
                         Console.Clear();
+                        sortedBy = "Sorting: by year";
                         numerical = true;
                         alpha = false;
                         break;
@@ -135,6 +137,7 @@ namespace ConsoleApplication1
                     else if (keyInfo.Key == ConsoleKey.A)
                     {
                         Console.Clear();
+                        sortedBy = "Sorting: alphabeticaly";
                         numerical = false;
                         alpha = true;
                         break;
@@ -144,7 +147,32 @@ namespace ConsoleApplication1
                         Console.Clear();
                         Console.WriteLine("Enter the new movie with Year");
                         Console.WriteLine("Example: New Movie One 1996");
-                        newItem = Console.ReadLine();
+                        stringForAddingToTheList = Console.ReadLine();
+                        break;
+                    }
+                    else if (keyInfo.Key == ConsoleKey.R)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Type the name of the movie and coresponding year");
+                        Console.WriteLine("If you've changed your mind, type '(N)evermind'");
+                        Console.WriteLine("");
+                        Sort.ListAll(StartingSetOfStrings);
+                        Console.WriteLine("");
+                        Console.WriteLine("Example: The Movie to Be Removed 1996");
+                        stringForRemovingFromTheList = Console.ReadLine();
+
+                        if (stringForRemovingFromTheList == "Nevermind" ||stringForRemovingFromTheList == "nevermind" ||stringForRemovingFromTheList == "n" ||stringForRemovingFromTheList == "N")
+                        {
+                            stringForRemovingFromTheList = null;
+                        }
+
+                        break;
+                    }
+                    else if (keyInfo.Key == ConsoleKey.L)
+                    {
+                        Console.Clear();
+                        Sort.ListAll(StartingSetOfStrings);
+                        Console.ReadKey();
                         break;
                     }
                     else
@@ -152,7 +180,6 @@ namespace ConsoleApplication1
                         Console.WriteLine("Not a valid key");
                     }
                 }
-
             }
         }
     }

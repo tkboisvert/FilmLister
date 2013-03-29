@@ -43,9 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlphaSorter.cs" />
-    <Compile Include="ChecknewItem.cs" />
-    <Compile Include="NumericalSorter.cs" />
+    <Compile Include="HardCopyOfTitles.cs" />
+    <Compile Include="Sort.cs" />
+    <Compile Include="CheckString.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
