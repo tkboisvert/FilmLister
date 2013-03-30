@@ -95,9 +95,9 @@ namespace ConsoleApplication1
                 {
                     if (char.IsLetter(c) || char.IsPunctuation(c) || char.IsWhiteSpace(c))
                     {
-                        if (char.IsWhiteSpace(c) && removesDoubleSpaces == false) { setOfStrings[i] += c; removesDoubleSpaces = true; }
-                        else if (char.IsWhiteSpace(c) && removesDoubleSpaces == true) { removesDoubleSpaces = false; }
-                        else { setOfStrings[i] += c; removesDoubleSpaces = false; }
+                        if (char.IsWhiteSpace(c) && removesDoubleSpaces == true) { setOfStrings[i] += c; removesDoubleSpaces = false; }
+                        else if (char.IsWhiteSpace(c) && removesDoubleSpaces == false) { removesDoubleSpaces = true; }
+                        else { setOfStrings[i] += c; removesDoubleSpaces = true; }
                     }
                     else if (char.IsDigit(c))
                     {

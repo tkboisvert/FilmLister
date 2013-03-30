@@ -178,6 +178,8 @@ namespace ConsoleApplication1
                     {
                         Console.Clear();
                         Sort.ListAll(StartingSetOfStrings);
+                        Console.WriteLine("");
+                        Console.WriteLine("Press any key to continue");
                         Console.ReadKey();
                         break;
                     }
