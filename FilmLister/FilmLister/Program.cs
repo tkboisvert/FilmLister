@@ -41,6 +41,8 @@ namespace ConsoleApplication1
 
                 string[] setOfStrings = new string[StartingSetOfStrings.Count()];
 
+                // Initial menu, any changes to the list will result in re-starting to this output
+
                 Console.Clear();
                 Console.WriteLine(sortedBy);
                 Console.WriteLine("Sort by: (Y)ear, (A)lphabetical");
@@ -48,7 +50,7 @@ namespace ConsoleApplication1
                 Console.WriteLine("Press the right arrow key to begin");
                 Console.WriteLine("");
                 Console.WriteLine("a(D)d a title, (R)emove a title, (L)ist all");
-                if (sortedBy == "Sorting: by year" || sortedBy == "Sorting: alphabeticaly")
+                if (sortedBy == "Sorting: by year" || sortedBy == "Sorting: alphabeticaly") // Sets the proper arrow config 
                 {
                     Console.WriteLine("            ->");
                 }
@@ -72,7 +74,7 @@ namespace ConsoleApplication1
 
                     keyInfo = Console.ReadKey();
 
-                    if (keyInfo.Key == ConsoleKey.RightArrow)
+                    if (keyInfo.Key == ConsoleKey.RightArrow) // Changes output to the proceding entry in StartingSetOfStrings
                     {
                         if (x < (StartingSetOfStrings.Count() - 1))
                         {
@@ -98,7 +100,7 @@ namespace ConsoleApplication1
                             }
                         }
                     }
-                    else if (keyInfo.Key == ConsoleKey.LeftArrow)
+                    else if (keyInfo.Key == ConsoleKey.LeftArrow) // Changes output to the previous entry in StartingSetOfStrings
                     {
                         if (x >= 1)
                         {
@@ -126,7 +128,7 @@ namespace ConsoleApplication1
 
                         }
                     }
-                    else if (keyInfo.Key == ConsoleKey.Y)
+                    else if (keyInfo.Key == ConsoleKey.Y) // Sorts StartingSetOfStrings by year
                     {
                         Console.Clear();
                         sortedBy = "Sorting: by year";
@@ -134,7 +136,7 @@ namespace ConsoleApplication1
                         alpha = false;
                         break;
                     }
-                    else if (keyInfo.Key == ConsoleKey.A)
+                    else if (keyInfo.Key == ConsoleKey.A) // Sorts StartingSetOfStrings alphabeticaly
                     {
                         Console.Clear();
                         sortedBy = "Sorting: alphabeticaly";
@@ -142,7 +144,7 @@ namespace ConsoleApplication1
                         alpha = true;
                         break;
                     }
-                    else if (keyInfo.Key == ConsoleKey.D)
+                    else if (keyInfo.Key == ConsoleKey.D) // Add a title to StartingSetOfStrings
                     {
                         Console.Clear();
                         Console.WriteLine("Enter the new movie with Year");
@@ -150,15 +152,16 @@ namespace ConsoleApplication1
                         stringForAddingToTheList = Console.ReadLine();
                         break;
                     }
-                    else if (keyInfo.Key == ConsoleKey.R)
+                    else if (keyInfo.Key == ConsoleKey.R) // Lists all titles and removes a specified title from StartingSetOfStrings
                     {
                         Console.Clear();
                         Console.WriteLine("Type the name of the movie and coresponding year");
+                        Console.WriteLine("");
                         Console.WriteLine("If you've changed your mind, press the escape key.");
                         Console.WriteLine("");
                         Sort.ListAll(StartingSetOfStrings);
                         Console.WriteLine("");
-                        Console.WriteLine("Text must be formatted in the same way with the same case.");
+                        Console.WriteLine("Text must be formatted in the same way, with the same case.");
                         keyInfo = Console.ReadKey();
 
                         if (keyInfo.Key == ConsoleKey.Escape)
@@ -174,7 +177,7 @@ namespace ConsoleApplication1
 
                         break;
                     }
-                    else if (keyInfo.Key == ConsoleKey.L)
+                    else if (keyInfo.Key == ConsoleKey.L) // Lists all movie titles that are currently in StartingSetOfStrings
                     {
                         Console.Clear();
                         Sort.ListAll(StartingSetOfStrings);
@@ -185,7 +188,7 @@ namespace ConsoleApplication1
                     }
                     else
                     {
-                        Console.WriteLine("Not a valid key");
+                        Console.WriteLine(" is not a valid key"); // keyInfo.Key precedes this string. 
                     }
                 }
             }

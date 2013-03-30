@@ -89,15 +89,15 @@ namespace ConsoleApplication1
 
             foreach (string s in needsSorting)
             {
-                bool removesDoubleSpaces = false;
+                bool removesDoubleSpaces = true;
 
                 foreach (char c in s)
                 {
                     if (char.IsLetter(c) || char.IsPunctuation(c) || char.IsWhiteSpace(c))
                     {
-                        if (char.IsWhiteSpace(c) && removesDoubleSpaces == true) { setOfStrings[i] += c; removesDoubleSpaces = false; }
-                        else if (char.IsWhiteSpace(c) && removesDoubleSpaces == false) { removesDoubleSpaces = true; }
-                        else { setOfStrings[i] += c; removesDoubleSpaces = true; }
+                        if (char.IsWhiteSpace(c) && removesDoubleSpaces == false) { setOfStrings[i] += c; removesDoubleSpaces = true; }
+                        else if (char.IsWhiteSpace(c) && removesDoubleSpaces == true) { removesDoubleSpaces = false; }
+                        else { setOfStrings[i] += c; removesDoubleSpaces = false; }
                     }
                     else if (char.IsDigit(c))
                     {
