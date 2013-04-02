@@ -26,9 +26,11 @@ namespace ConsoleApplication1
 
             LinkedList<string> StartingSetOfStrings = new LinkedList<string>(HardCopyOfTitles.ToLinkedList());
 
+            Stack<Stack<string>> HardCopyStackOfStacks = new Stack<Stack<string>>(HardCopyOfTitles.StackOfStacks());
+
             while (true)
             {
-                
+
                 StartingSetOfStrings = CheckString.AndAddSpecifiedNode(StartingSetOfStrings, stringForAddingToTheList);
 
                 StartingSetOfStrings = CheckString.AndRemoveSpecifiedNode(StartingSetOfStrings, stringForRemovingFromTheList);
@@ -39,7 +41,9 @@ namespace ConsoleApplication1
 
                 StartingSetOfStrings = Sort.DecideSortingMethod(alpha, numerical, StartingSetOfStrings);
 
-                string[] setOfStrings = new string[StartingSetOfStrings.Count()];
+                //string[] setOfStrings = new string[StartingSetOfStrings.Count()];
+
+                Stack<string>[] setOfStacks = new Stack<string>[StartingSetOfStrings.Count()];
 
                 // Initial menu, any changes to the list will result in re-starting to this output
 
@@ -58,9 +62,15 @@ namespace ConsoleApplication1
 
                 x = 0;
 
-                foreach (string s in StartingSetOfStrings)
+                //foreach (string s in StartingSetOfStrings)
+                //{
+                //    setOfStrings[x] = s;
+                //    x++;
+                //}
+
+                foreach (Stack<string> s in HardCopyStackOfStacks)
                 {
-                    setOfStrings[x] = s;
+                    setOfStacks[x] = s;
                     x++;
                 }
 
@@ -80,14 +90,23 @@ namespace ConsoleApplication1
                             Console.WriteLine(sortedBy);
                             Console.WriteLine("Sort by: (Y)ear, (A)lphabetical");
                             Console.WriteLine("");
-                            Console.WriteLine(setOfStrings[x]);
+                            //Console.WriteLine(setOfStrings[x]);
+                            Console.WriteLine(setOfStacks[x].Pop());
                             Console.WriteLine("");
                             Console.WriteLine("a(D)d a title, (R)emove a title, (L)ist all");
-                            if (StartingSetOfStrings.First() == setOfStrings[x])
+                            //if (StartingSetOfStrings.First() == setOfStrings[x])
+                            //{
+                            //    Console.WriteLine("            ->");
+                            //}
+                            if (StartingSetOfStrings.First() == setOfStacks[x].Pop())
                             {
                                 Console.WriteLine("            ->");
                             }
-                            else if (StartingSetOfStrings.Last() == setOfStrings[x])
+                            //else if (StartingSetOfStrings.Last() == setOfStrings[x])
+                            //{
+                            //    Console.WriteLine("<-            ");
+                            //}
+                            else if (StartingSetOfStrings.Last() == setOfStacks[x].Pop())
                             {
                                 Console.WriteLine("<-            ");
                             }
@@ -106,14 +125,23 @@ namespace ConsoleApplication1
                             Console.WriteLine(sortedBy);
                             Console.WriteLine("Sort by: (Y)ear, (A)lphabetical");
                             Console.WriteLine("");
-                            Console.WriteLine(setOfStrings[x]);
+                            //Console.WriteLine(setOfStrings[x]);
+                            Console.WriteLine(setOfStacks[x].Pop());
                             Console.WriteLine("");
                             Console.WriteLine("a(D)d a title, (R)emove a title, (L)ist all");
-                            if (StartingSetOfStrings.First() == setOfStrings[x])
+                            //if (StartingSetOfStrings.First() == setOfStrings[x])
+                            //{
+                            //    Console.WriteLine("            ->");
+                            //}
+                            if (StartingSetOfStrings.First() == setOfStacks[x].Pop())
                             {
                                 Console.WriteLine("            ->");
                             }
-                            else if (StartingSetOfStrings.Last() == setOfStrings[x])
+                            //else if (StartingSetOfStrings.Last() == setOfStrings[x])
+                            //{
+                            //    Console.WriteLine("<-            ");
+                            //}
+                            else if (StartingSetOfStrings.Last() == setOfStacks[x].Pop())
                             {
                                 Console.WriteLine("<-            ");
                             }
@@ -166,8 +194,8 @@ namespace ConsoleApplication1
                             stringForRemovingFromTheList = null;
                         }
 
-                        else 
-                        { 
+                        else
+                        {
                             string firstCharacter = keyInfo.Key.ToString();
                             stringForRemovingFromTheList = firstCharacter += Console.ReadLine();
                         }

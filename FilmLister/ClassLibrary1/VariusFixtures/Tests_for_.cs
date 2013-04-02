@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Tests.SortingFixtures;
 
-namespace TEsstttt
+namespace Tests.VariusFixtures
 {
-    class Class2
+    class Tests_for_
     {
-        static void Main(string[] args)
+        public void Stack_in_LinkedList_functionality()
         {
             ToLinkedList();
         }

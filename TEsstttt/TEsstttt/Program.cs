@@ -12,62 +12,43 @@ namespace Tests.SortingFixtures
     {
         static void Main(string[] args)
         {
-            NumberSorter numberSorter = new NumberSorter();
-
-            LinkedList<string> toBeSorted = new LinkedList<string>(); toBeSorted.AddFirst("decimal 1994"); toBeSorted.AddFirst("capital 1999"); toBeSorted.AddFirst("bee 2000"); toBeSorted.AddFirst("aligator 1817");
-
-            List<string> result = numberSorter.Sorter(toBeSorted);
-
-            List<string> expected = new List<string>(); expected.Add("1817aligator"); expected.Add("1994decimal"); expected.Add("1999capital"); expected.Add("2000bee"); expected.Sort();
-
-            Assert.AreEqual(expected, result);
-
+            ToLinkedList();
         }
-
-        internal class NumberSorter
+        public static Stack<Stack<string>> ToLinkedList()
         {
-            public List<string> Sorter(LinkedList<string> needsSorting)
+            Stack<string> HardCopyStackOfStacksOne = new Stack<string>(); HardCopyStackOfStacksOne.Push("Producer One"); HardCopyStackOfStacksOne.Push("Actor One"); HardCopyStackOfStacksOne.Push("Title One");
+
+            Stack<string> HardCopyStackOfStacksTwo = new Stack<string>(); HardCopyStackOfStacksTwo.Push("Producer Two"); HardCopyStackOfStacksTwo.Push("Actor Two"); HardCopyStackOfStacksTwo.Push("Title Two");
+
+            Stack<string> HardCopyStackOfStacksThree = new Stack<string>(); HardCopyStackOfStacksThree.Push("Producer Three"); HardCopyStackOfStacksThree.Push("Actor three"); HardCopyStackOfStacksThree.Push("Title Three");
+
+            Stack<string> HardCopyStackOfStacksFour = new Stack<string>(); HardCopyStackOfStacksFour.Push("Producer Four"); HardCopyStackOfStacksFour.Push("Actor Four"); HardCopyStackOfStacksFour.Push("Title Four");
+
+            Stack<Stack<string>> HardCopyStackOfStacks = new Stack<Stack<string>>();
+
+            HardCopyStackOfStacks.Push(HardCopyStackOfStacksFour);
+            HardCopyStackOfStacks.Push(HardCopyStackOfStacksThree);
+            HardCopyStackOfStacks.Push(HardCopyStackOfStacksTwo);
+            HardCopyStackOfStacks.Push(HardCopyStackOfStacksOne);
+
+            Stack<string>[] setOfStacks = new Stack<string>[HardCopyStackOfStacks.Count()];
+
+            int x = 0;
+
+            foreach (Stack<string> s in HardCopyStackOfStacks)
             {
-                int a = needsSorting.Count;
-
-                string[] setOfStrings = new string[a];
-
-                string[] setOfStringsWithNumberFirst = new string[a];
-
-                List<string> sortedList = new List<string>();
-
-                int i = 0;
-
-                foreach (string s in needsSorting)
-                {
-                    foreach (char c in s)
-                    {
-                        if (char.IsLetter(c))
-                        {
-                            setOfStrings[i] += c;
-                        }
-                        else if (char.IsDigit(c))
-                        {
-                            setOfStringsWithNumberFirst[i] += c;
-                        }
-                    }
-
-                    setOfStringsWithNumberFirst[i] += setOfStrings[i];
-
-                    i++;
-                }
-                foreach (string s in setOfStringsWithNumberFirst)
-                {
-
-                    sortedList.Add(s);
-
-                }
-
-
-                sortedList.Sort();
-
-                return (sortedList);
+                setOfStacks[x] = s;
+                x++;
             }
+            x = 0;
+            while (setOfStacks.Count() > x)
+            {
+                Console.WriteLine("{0}, {1}, {2}", setOfStacks[x].Pop(), setOfStacks[x].Pop(), setOfStacks[x].Pop());
+                x++;
+            }
+            Console.Read();
+
+            return (HardCopyStackOfStacks);
         }
     }
 }
