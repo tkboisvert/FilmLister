@@ -113,5 +113,24 @@ namespace ConsoleApplication1
 
             return (HardCopyStack);
         }
+        public static Stack<Stack<string>> StackOfStacks()
+        {
+            Stack<string> LordoftheRingsStack = new Stack<string>(); LordoftheRingsStack.Push("Producer One"); LordoftheRingsStack.Push("Actor One"); LordoftheRingsStack.Push("Title One");
+
+            Stack<string> HardCopyStackOfStacksTwo = new Stack<string>(); HardCopyStackOfStacksTwo.Push("Producer Two"); HardCopyStackOfStacksTwo.Push("Actor Two"); HardCopyStackOfStacksTwo.Push("Title Two");
+
+            Stack<string> HardCopyStackOfStacksThree = new Stack<string>(); HardCopyStackOfStacksThree.Push("Producer Three"); HardCopyStackOfStacksThree.Push("Actor three"); HardCopyStackOfStacksThree.Push("Title Three");
+
+            Stack<string> HardCopyStackOfStacksFour = new Stack<string>(); HardCopyStackOfStacksFour.Push("Producer Four"); HardCopyStackOfStacksFour.Push("Actor Four"); HardCopyStackOfStacksFour.Push("Title Four");
+
+            Stack<Stack<string>> HardCopyStackOfStacks = new Stack<Stack<string>>();
+
+            HardCopyStackOfStacks.Push(HardCopyStackOfStacksFour);
+            HardCopyStackOfStacks.Push(HardCopyStackOfStacksThree);
+            HardCopyStackOfStacks.Push(HardCopyStackOfStacksTwo);
+            HardCopyStackOfStacks.Push(LordoftheRingsStack);
+
+            return (HardCopyStackOfStacks);
+        }
     }
 }

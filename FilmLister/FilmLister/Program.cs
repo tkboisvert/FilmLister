@@ -60,10 +60,7 @@ namespace ConsoleApplication1
 
                 foreach (string s in StartingSetOfStrings)
                 {
-                    foreach (char c in s)
-                    {
-                        setOfStrings[x] += c;
-                    }
+                    setOfStrings[x] = s;
                     x++;
                 }
 
